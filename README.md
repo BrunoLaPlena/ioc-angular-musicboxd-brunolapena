@@ -1,27 +1,21 @@
-# IocAngularMusicboxdBrunolaplena
+# MusicBoxd – Bruno La Plena
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.21.
+## Description
 
-## Development server
+MusicBoxd is a web application inspired by Letterboxd that allows users to track music albums and singles they have listened to or want to listen to. Users can rate releases, rank their favorites, and write reviews.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+The goal of the application is to help users organize their listening history, discover new music and share their reviews with others.
 
-## Code scaffolding
+## Technical Stack
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- Angular 18
+- TypeScript
+- SCSS
+- Standalone Angular architecture
+- Angular Router
+- Node.js
+- npm
 
-## Build
+## Status
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Initial project configuration completed and verified.
