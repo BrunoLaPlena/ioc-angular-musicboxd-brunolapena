@@ -1,4 +1,4 @@
-export interface Element {
+export interface Song {
     id: String; // Generated as the title, artist and album initials plus a random number
     title: string;
     artist: string;

@@ -1,6 +1,6 @@
-import { Element } from '../models/element.model';
+import { Song } from '../models/song.model';
 
-export const MOCK_ELEMENTS: Element[] = [
+export const MOCK_ELEMENTS: Song[] = [
     {
         id: 'BR-Q-ANO-12345',
         title: 'Bohemian Rhapsody',
