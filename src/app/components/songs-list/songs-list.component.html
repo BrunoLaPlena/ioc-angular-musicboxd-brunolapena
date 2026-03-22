@@ -1,1 +1,10 @@
-<p>songs-list works!</p>
+<div *ngIf="songs.length > 0; else emptyList" class="songs-list">
+    <app-song-card 
+        *ngFor="let song of songs; trackBy: trackById" 
+        [song]="song">
+    </app-song-card>
+</div>
+
+<ng-template #emptyList>
+    <p class="no-results">No songs found.</p>
+</ng-template>

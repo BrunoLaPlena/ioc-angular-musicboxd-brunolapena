@@ -8,18 +8,28 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, SongsListComponent, SearchBarComponent],
+  imports: [SongsListComponent, SearchBarComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
 })
 export class AppComponent {
   title = 'ioc-angular-musicboxd-brunolaplena';
-  songs: Song[] = MOCK_ELEMENTS;
+  allSongs: Song[] = MOCK_ELEMENTS;
+  songs: Song[] = this.allSongs;
 
   seartchQuery: string = '';
 
-  onSearch(query: string) {
-    this.seartchQuery = query;
-    console.log('Search:', query);
+  onSearch(term: string) {
+    const lowerTerm = term.toLowerCase();
+
+    this.songs = this.allSongs.filter(song =>
+      song.title.toLowerCase().includes(lowerTerm) ||
+      song.artist.toLowerCase().includes(lowerTerm)
+    );
   }
+  
+  //onSearch(query: string) {
+  //  this.seartchQuery = query;
+  //  console.log('Search:', query);
+  //}
 }
