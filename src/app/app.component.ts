@@ -19,8 +19,8 @@ export class AppComponent {
 
   seartchQuery: string = '';
 
-  onSearch(term: string) {
-    const lowerTerm = term.toLowerCase();
+  onSearch(query: string) {
+    const lowerTerm = query.toLowerCase();
 
     this.songs = this.allSongs.filter(song =>
       song.title.toLowerCase().includes(lowerTerm) ||

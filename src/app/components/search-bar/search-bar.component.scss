@@ -1,0 +1,8 @@
+input.ng-invalid.ng-dirty {
+  border-color: red;
+}
+
+input.ng-invalid.ng-dirty:focus {
+  border-color: red;
+  outline-color: red; /* if outline exists */
+}
