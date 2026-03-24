@@ -8,10 +8,10 @@ import { SongCardComponent } from '../song-card/song-card.component';
   standalone: true,
   imports: [CommonModule, SongCardComponent],
   templateUrl: './songs-list.component.html',
-  styleUrl: './songs-list.component.scss'
+  styleUrl: './songs-list.component.scss',
 })
 export class SongsListComponent {
-  @Input() songs: Song[] = [];
+  @Input() filteredSongs: Song[] = [];
 
   trackById(index: number, song: Song): string {
     return song.id;

@@ -6,3 +6,20 @@ input.ng-invalid.ng-dirty:focus {
   border-color: red;
   outline-color: red; /* if outline exists */
 }
+
+input:focus,
+button:focus {
+  outline: 2px solid #5b00e4;
+}
+
+button {
+  background: #5b00e4;
+  color: white;
+  border: none;
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+}
+
+button:disabled {
+  background: #ccc;
+}

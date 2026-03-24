@@ -1,10 +1,16 @@
-<div *ngIf="songs.length > 0; else emptyList" class="songs-list">
-    <app-song-card 
-        *ngFor="let song of songs; trackBy: trackById" 
-        [song]="song">
-    </app-song-card>
+<!-- LIST -->
+<div class="grid" *ngIf="filteredSongs.length > 0; else noResults">
+  <app-song-card
+    *ngFor="let song of filteredSongs; trackBy: trackById"
+    [song]="song"
+  >
+  </app-song-card>
 </div>
 
-<ng-template #emptyList>
-    <p class="no-results">No songs found.</p>
+<!-- EMPTY STATE -->
+<ng-template #noResults>
+  <div class="no-results">
+    <p>No songs found</p>
+    <small>Try another search</small>
+  </div>
 </ng-template>

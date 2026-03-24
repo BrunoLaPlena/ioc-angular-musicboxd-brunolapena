@@ -15,21 +15,16 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
 export class AppComponent {
   title = 'ioc-angular-musicboxd-brunolaplena';
   allSongs: Song[] = MOCK_ELEMENTS;
-  songs: Song[] = this.allSongs;
+  filteredSongs: Song[] = this.allSongs;
 
-  seartchQuery: string = '';
+  searchQuery: string = '';
 
   onSearch(query: string) {
     const lowerTerm = query.toLowerCase();
 
-    this.songs = this.allSongs.filter(song =>
+    this.filteredSongs = this.allSongs.filter(song =>
       song.title.toLowerCase().includes(lowerTerm) ||
       song.artist.toLowerCase().includes(lowerTerm)
     );
   }
-  
-  //onSearch(query: string) {
-  //  this.seartchQuery = query;
-  //  console.log('Search:', query);
-  //}
 }

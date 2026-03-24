@@ -1,16 +1,20 @@
+<label for="search">Search songs:</label>
 <form (ngSubmit)="onSearch(searchQuery)">
     <input
+        id="search"
         type="text"
-        placeholder="Search songs..."
+        placeholder="Name of song"
         [(ngModel)]="searchQuery"
         name="search"
         minlength="3"
         #searchInput="ngModel"
+        aria-describedby="search-error"
+        autocomplete="off"
     >
 
     <button type="submit" [disabled]="searchInput.invalid">Search</button>
 </form>
 
-<p *ngIf="searchInput.errors?.['minlength'] && searchInput.touched">
+<div id="search-error" *ngIf="searchInput.invalid && searchInput.touched">
   Minimum 3 characters required
-</p>
+</div>
