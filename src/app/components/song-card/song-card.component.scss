@@ -1,6 +1,32 @@
 .song-card {
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 1rem;
-  background: rgb(191, 191, 191);
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.2rem;
+
+  transition: all 0.2s ease;
+}
+
+/* Hover effect */
+.song-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--primary);
+}
+
+/* Title */
+.song-card h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.2rem;
+}
+
+/* Artist */
+.song-card h4 {
+  margin: 0;
+  font-weight: 500;
+}
+
+/* Secondary text (album / rating) */
+.song-card p {
+  margin-top: 0.5rem;
+  color: var(--text-secondary);
 }

@@ -1,1 +1,32 @@
-/* You can add global styles to this file, and also import other style files */
+/* ===== GLOBAL THEME ===== */
+
+body {
+  margin: 0;
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
+
+  /* Dark background */
+  background-color: #323232;
+
+  /* Default text color */
+  color: #eaeaea;
+}
+
+/* Purple accent color (branding) */
+:root {
+  --primary: #4b0abc; /* main purple */
+  --primary-hover: #4208a5;
+  --card-bg: #1e1e1e;
+  --border: #2a2a2a;
+  --text-secondary: #a1a1aa;
+  --error: #8d3535;
+}
+
+/* Spacing and layout */
+.app-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}

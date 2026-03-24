@@ -1,25 +1,43 @@
+input {
+  background: #1e1e1e;
+  border: 1.5px solid var(--border);
+  color: white;
+
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+}
+
+input:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
 input.ng-invalid.ng-dirty {
-  border-color: red;
+  border-color: var(--error);
 }
 
 input.ng-invalid.ng-dirty:focus {
-  border-color: red;
-  outline-color: red; /* if outline exists */
+  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.3);
 }
 
-input:focus,
-button:focus {
-  outline: 2px solid #5b00e4;
-}
-
+/* Button */
 button {
-  background: #5b00e4;
+  background: var(--primary);
   color: white;
   border: none;
-  padding: 0.3rem 0.6rem;
-  border-radius: 4px;
+
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+button:hover {
+  background: var(--primary-hover);
 }
 
 button:disabled {
-  background: #ccc;
+  background: #444;
+  cursor: not-allowed;
 }
