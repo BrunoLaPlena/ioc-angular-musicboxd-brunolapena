@@ -8,25 +8,26 @@ body {
     sans-serif;
 
   /* Dark background */
-  background-color: #323232;
+  background-color: var(--background);
 
   /* Default text color */
-  color: #eaeaea;
+  color: var(--text-color);
 }
 
-/* Purple accent color (branding) */
 :root {
-  --primary: #4b0abc; /* main purple */
-  --primary-hover: #4208a5;
+  --primary: #4b0abc; /* main accent color (branding) */
+  --primary-hover: #43119b;
+  --background: #323232;
   --card-bg: #1e1e1e;
   --border: #2a2a2a;
+  --text-color: #eaeaea;
   --text-secondary: #a1a1aa;
   --error: #8d3535;
 }
 
 /* Spacing and layout */
 .app-container {
-  max-width: 1200px;
+  max-width: 900px;
   margin: 0 auto;
   padding: 1rem;
 }

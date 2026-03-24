@@ -1,43 +1,119 @@
-input {
-  background: #1e1e1e;
-  border: 1.5px solid var(--border);
-  color: white;
+/* ===== CONTAINER ===== */
+.search-bar-container {
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto 2rem;
 
-  padding: 0.5rem 0.75rem;
-  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
 }
 
-input:focus {
+/* ===== FORM (GROUP) ===== */
+.search-form {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* ===== INPUT ===== */
+.search-form input {
+  flex: 1;
+
+  background: var(--card-bg);
+  color: var(--text-color);
+
+  border: 1.5px solid var(--card-bg);
+  border-right: none;
+
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px 0 0 8px;
+
+  font-size: 0.95rem;
+}
+
+.search-form input:focus {
   outline: none;
   border-color: var(--primary);
 }
 
-input.ng-invalid.ng-dirty {
+/* ===== INPUT ERROR ===== */
+.search-form input.ng-invalid.ng-dirty {
   border-color: var(--error);
 }
 
-input.ng-invalid.ng-dirty:focus {
-  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.3);
-}
-
-/* Button */
-button {
+/* ===== BUTTON ===== */
+.search-form button {
   background: var(--primary);
-  color: white;
-  border: none;
+  color: var(--text-color);
 
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
+  border: 1.5px solid var(--primary);
+  border-left: none;
 
-  cursor: pointer;
+  padding: 0 1.2rem;
+  border-radius: 0 8px 8px 0;
+
+  font-size: 0.95rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   transition: background 0.2s ease;
 }
 
-button:hover {
+.search-form button:hover {
   background: var(--primary-hover);
 }
 
-button:disabled {
+.search-form button:disabled {
   background: #444;
   cursor: not-allowed;
+}
+
+/* ===== GROUP STATES ===== */
+
+/* Focus (default) */
+.search-form:focus-within {
+  box-shadow: 0 0 0 1.5px rgba(124, 58, 237, 0.4);
+}
+
+/* Error (overrides focus) */
+.search-form:has(input.ng-invalid.ng-dirty):focus-within {
+  box-shadow: 0 0 0 1.5px rgba(239, 68, 68, 0.3);
+}
+
+/* Button error state */
+.search-form:has(input.ng-invalid.ng-dirty) button {
+  border-color: var(--error);
+}
+
+/* ===== LABEL & ERROR TEXT ===== */
+.search-bar-container label {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+#search-error {
+  font-size: 0.9rem;
+  color: var(--error);
+  margin-top: 0.2rem;
+
+  animation: fadeIn 0.6s ease;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
