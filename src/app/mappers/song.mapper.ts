@@ -8,18 +8,18 @@ import { Song, SongApiResponse } from "../models/song.model";
  */
 export function mapSongFromApi(apiResponse: SongApiResponse): Song {
     const {
-        id, nom, descripcio, album, imatge,
-        dataPublicacio, preu, categoria, stock, popular
+        id, name, description, category, image, artist, album, published, duration, stock, popular
     } = apiResponse;
     return {
         id,
-        title: nom,
-        artist: descripcio,
+        title: name,
+        description: description?.trim() || undefined,
+        artist,
         album,
-        coverImage: imatge,
-        published: new Date(dataPublicacio),
-        duration: preu,
-        genres: categoria.split(',').map(g => g.trim()).filter(g => g.length > 0),
+        coverImage: image,
+        published: new Date(published),
+        duration,
+        genres: category.split(',').map(g => g.trim()).filter(g => g.length > 0),
         globalRating: stock,
         popular,
         personalRating: undefined

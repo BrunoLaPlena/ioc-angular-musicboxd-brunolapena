@@ -56,7 +56,7 @@ export class SongService {
    * @param query The search query to filter songs by title, artist, or album.
    */
   searchSongs(query: string) {
-    this.fetchSongs(`${this.songsDirectory}?nom_like=${query}`);
+    this.fetchSongs(`${this.songsDirectory}?name_like=${query}`);
   }
 
   /**
