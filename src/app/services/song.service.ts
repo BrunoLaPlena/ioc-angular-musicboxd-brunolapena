@@ -14,9 +14,13 @@ export class SongService {
   private readonly SONGS_ENDPOINT = '/songs';
   private songsDirectory = environment.apiUrl + this.SONGS_ENDPOINT;
   
-  songs = signal<Song[]>([]);
-  loading = signal<boolean>(false);
-  error = signal<string | null>(null);
+  private _songs = signal<Song[]>([]);
+  private _loading = signal<boolean>(false);
+  private _error = signal<string | null>(null);
+
+  songs = this._songs.asReadonly();
+  loading = this._loading.asReadonly();
+  error = this._error.asReadonly();
 
   /**
    * Generic helper method to fetch songs. 
@@ -25,17 +29,17 @@ export class SongService {
    * @param url The URL of the API endpoint to fetch songs from, passed by the public methods.
    */
   private fetchSongs(url: string): void {
-  this.loading.set(true);
-  this.error.set(null);
+  this._loading.set(true);
+  this._error.set(null);
 
   this.http.get<SongApiResponse[]>(url).subscribe({
     next: (response) => {
-      this.songs.set(mapMultipleSongsFromApi(response));
-      this.loading.set(false);
+      this._songs.set(mapMultipleSongsFromApi(response));
+      this._loading.set(false);
     },
     error: () => {
-      this.error.set('Failed to load songs');
-      this.loading.set(false);
+      this._error.set('Failed to load songs');
+      this._loading.set(false);
     }
   });
 }
@@ -52,7 +56,7 @@ export class SongService {
    * @param query The search query to filter songs by title, artist, or album.
    */
   searchSongs(query: string) {
-    this.fetchSongs(`${this.songsDirectory}?search=${encodeURIComponent(query)}`);
+    this.fetchSongs(`${this.songsDirectory}?nom_like=${query}`);
   }
 
   /**

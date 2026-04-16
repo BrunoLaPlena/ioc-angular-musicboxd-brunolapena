@@ -1,7 +1,7 @@
 <!-- LIST -->
-<div class="grid" *ngIf="filteredSongs.length > 0; else noResults">
+<div class="grid" *ngIf="songs.length > 0; else noResults">
   <app-song-card
-    *ngFor="let song of filteredSongs; trackBy: trackById"
+    *ngFor="let song of songs; trackBy: trackById"
     [song]="song"
   >
   </app-song-card>

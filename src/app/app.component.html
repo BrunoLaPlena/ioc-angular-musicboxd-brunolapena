@@ -1,20 +1,26 @@
 <div class="app-container">
   <h1>MusicBoxd 🎵</h1>
 
-  <!-- Search -->
-  <app-search-bar (search)="onSearch($event)"></app-search-bar>
+  <!-- Search Bar-->
+  <app-search-bar 
+    (search)="onSearch($event)" 
+    (showPopular)="onShowPopular()">
+  </app-search-bar>
 
-  <!-- Loading -->
-  <p *ngIf="songService.loading()">Loading...</p>
+  <!-- LOADING -->
+  <div *ngIf="songService.loading()" class="loading-container">
+    <div class="spinner"></div>
+    <p>Loading songs...</p>
+  </div>
 
-  <!-- Error -->
-  <p *ngIf="songService.error()">
-    {{ songService.error() }}
-  </p>
+  <!-- ERROR -->
+  <div *ngIf="!songService.loading() && songService.error()" class="error-container">
+    <p>{{ songService.error() }}</p>
+    <button (click)="retry()">Retry</button>
+  </div>
 
   <!-- Songs -->
   <app-songs-list
-    *ngIf="!songService.loading() && !songService.error()"
-    [filteredSongs]="filteredSongs()">
+    *ngIf="!songService.loading() && !songService.error()" [songs]="songService.songs()">
   </app-songs-list>
 </div>

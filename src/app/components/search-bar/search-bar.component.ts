@@ -13,8 +13,12 @@ export class SearchBarComponent {
   searchQuery: string = '';
 
   @Output() search = new EventEmitter<string>();
-
   onSearch(query: string) {
     this.search.emit(query);
+  }
+
+  @Output() showPopular = new EventEmitter<void>();
+  onPopularClick() {
+    this.showPopular.emit();
   }
 }

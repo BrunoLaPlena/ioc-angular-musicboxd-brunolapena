@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { Song } from '../../models/song.model';
 import { SongCardComponent } from '../song-card/song-card.component';
 
@@ -11,7 +11,7 @@ import { SongCardComponent } from '../song-card/song-card.component';
   styleUrl: './songs-list.component.scss',
 })
 export class SongsListComponent {
-  @Input() filteredSongs: Song[] = [];
+  @Input() songs: Song[] = [];
 
   trackById(index: number, song: Song): string {
     return song.id;

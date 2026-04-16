@@ -1,7 +1,6 @@
 import { Component, OnInit, inject, computed, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { SongsListComponent } from './components/songs-list/songs-list.component';
-import { Song } from './models/song.model';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { SongService } from './services/song.service';
 import { CommonModule } from '@angular/common';
@@ -29,5 +28,9 @@ export class AppComponent implements OnInit {
 
   onShowPopular() {
     this.songService.getPopularSongs();
+  }
+
+  retry() {
+    this.songService.loadAllSongs();
   }
 }

@@ -1,5 +1,7 @@
 <div class="search-bar-container">
   <label for="search">Search songs:</label>
+
+  <!-- SEARCH FORM -->
   <form (ngSubmit)="onSearch(searchQuery)" class="search-form">
     <input
       id="search"
@@ -17,6 +19,10 @@
     <button type="submit" [disabled]="searchInput.invalid">Search</button>
   </form>
 
+  <!-- POPULAR BUTTON-->
+  <button type="button" class="popular-button" (click)="onPopularClick()">Click here to see the most popular songs</button>
+
+  <!-- ERROR -->
   <div id="search-error" *ngIf="searchInput.invalid && searchInput.dirty">
     Minimum 3 characters required
   </div>
