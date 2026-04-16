@@ -1,5 +1,20 @@
 <div class="app-container">
   <h1>MusicBoxd 🎵</h1>
+
+  <!-- Search -->
   <app-search-bar (search)="onSearch($event)"></app-search-bar>
-  <app-songs-list [filteredSongs]="filteredSongs"></app-songs-list>
+
+  <!-- Loading -->
+  <p *ngIf="songService.loading()">Loading...</p>
+
+  <!-- Error -->
+  <p *ngIf="songService.error()">
+    {{ songService.error() }}
+  </p>
+
+  <!-- Songs -->
+  <app-songs-list
+    *ngIf="!songService.loading() && !songService.error()"
+    [filteredSongs]="filteredSongs()">
+  </app-songs-list>
 </div>
