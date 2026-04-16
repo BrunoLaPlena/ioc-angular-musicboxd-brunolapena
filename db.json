@@ -1,0 +1,124 @@
+{
+  "songs": [
+    {
+      "id": "BR-Q-ANO-12345",
+      "nom": "Bohemian Rhapsody",
+      "descripcio": "Queen",
+      "categoria": "Progressive Rock, Art Rock, Classic Rock, Opera Rock",
+      "preu": 348,
+      "imatge": "https://via.placeholder.com/150",
+      "stock": 4.7,
+      "popular": true,
+      "dataPublicacio": "1975-11-07",
+      "album": "A Night at the Opera"
+    },
+    {
+      "id": "T-MJ-T-67890",
+      "nom": "Thriller",
+      "descripcio": "Michael Jackson",
+      "categoria": "Pop, Rock, Funk",
+      "preu": 258,
+      "imatge": "https://via.placeholder.com/150",
+      "stock": 4.6,
+      "popular": true,
+      "dataPublicacio": "1982-11-30",
+      "album": "Thriller"
+    },
+    {
+      "id": "I-JL-I-54321",
+      "nom": "Imagine",
+      "descripcio": "John Lennon",
+      "categoria": "Pop, Rock, Folk",
+      "preu": 164,
+      "imatge": "https://via.placeholder.com/150",
+      "stock": 3.9,
+      "popular": false,
+      "dataPublicacio": "1971-09-09",
+      "album": "Imagine"
+    },
+    {
+      "id": "H-AD-H-98765",
+      "nom": "Hey Jude",
+      "descripcio": "The Beatles",
+      "categoria": "Pop, Rock",
+      "preu": 10,
+      "imatge": "https://via.placeholder.com/150",
+      "stock": 3.1,
+      "popular": false,
+      "dataPublicacio": "1968-08-08",
+      "album": "Hey Jude"
+    },
+    {
+      "id": "STTM-TGM-BTBAM-11223",
+      "nom": "Swim to the Moon",
+      "descripcio": "The Great Misdirect",
+      "categoria": "Progressive Metal, Metalcore, Experimental Metal",
+      "preu": 1073,
+      "imatge": "https://via.placeholder.com/150",
+      "stock": 4.9,
+      "popular": true,
+      "dataPublicacio": "2009-10-27",
+      "album": "Between the Buried and Me"
+    },
+    {
+      "id": "BL-TW-AH-67890",
+      "nom": "Blinding Lights",
+      "descripcio": "The Weeknd",
+      "categoria": "Pop, Synthwave",
+      "preu": 200,
+      "imatge": "https://via.placeholder.com/150",
+      "stock": 3.6,
+      "popular": false,
+      "dataPublicacio": "2020-03-20",
+      "album": "After Hours"
+    },
+    {
+      "id": "SOY-ES-D-13579",
+      "nom": "Shape of You",
+      "descripcio": "Ed Sheeran",
+      "categoria": "Pop, Dancehall",
+      "preu": 233,
+      "imatge": "https://via.placeholder.com/150",
+      "stock": 3.3,
+      "popular": false,
+      "dataPublicacio": "2017-01-06",
+      "album": "Divide"
+    },
+    {
+      "id": "ABITW-PF-TW-11223",
+      "nom": "Another Brick in the Wall",
+      "descripcio": "Pink Floyd",
+      "categoria": "Progressive Rock, Art Rock",
+      "preu": 308,
+      "imatge": "https://via.placeholder.com/150",
+      "stock": 4.3,
+      "popular": true,
+      "dataPublicacio": "1979-11-30",
+      "album": "The Wall"
+    },
+    {
+      "id": "LY-E-8M-24680",
+      "nom": "Lose Yourself",
+      "descripcio": "Eminem",
+      "categoria": "Hip Hop, Rap",
+      "preu": 326,
+      "imatge": "https://via.placeholder.com/150",
+      "stock": 3.7,
+      "popular": false,
+      "dataPublicacio": "2002-10-28",
+      "album": "8 Mile"
+    },
+    {
+      "id": "SLTS-N-N-13579",
+      "nom": "Smells Like Teen Spirit",
+      "descripcio": "Nirvana",
+      "categoria": "Grunge, Alternative Rock",
+      "preu": 301,
+      "imatge": "https://via.placeholder.com/150",
+      "stock": 4.1,
+      "popular": true,
+      "dataPublicacio": "1991-09-10",
+      "album": "Nevermind"
+    }
+  ]
+}

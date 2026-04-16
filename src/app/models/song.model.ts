@@ -1,10 +1,28 @@
+export interface SongApiResponse {
+  id: string;
+  nom: string;
+  descripcio: string; // artist
+  categoria: string; //genre(s)
+  preu: number; // duration
+  imatge: string;
+  stock: number; // Average global rating
+  popular: boolean;
+
+  // Extra fields
+  dataPublicacio: string;
+  album: string;
+}
+
 export interface Song {
-    id: string; // Generated as the title, artist and album initials plus a random number
-    title: string;
-    artist: string;
+    id: string;
+    title: string; // Derived from nom
+    artist: string; // Derived from descripcio
     album: string;
-    published: Date;
+    coverImage: string; // URL to the cover image
+    published: Date; // dataPublicacio converted to Date
     duration: number; // in seconds
-    genres: string[];
-    rating?: number; // Optional property for user rating, can be null if not rated
+    genres: string[]; // Split the category string into an array of genres
+    globalRating: number; // Derived from stock
+    popular: boolean;
+    personalRating?: number; // Optional property for user rating, can be null if not rated
 }
