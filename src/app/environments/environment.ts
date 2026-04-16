@@ -1,7 +1,4 @@
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:3000',
-  endpoints: {
-    songs: '/songs',
-  },
+  apiUrl: 'http://localhost:3000'
 };

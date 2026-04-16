@@ -17,30 +17,17 @@ import { CommonModule } from '@angular/common';
 export class AppComponent implements OnInit {
   title = 'ioc-angular-musicboxd-brunolaplena';
   songService = inject(SongService);
-  
+
   //Load songs from service
   ngOnInit() {
-    this.songService.loadSongs();
+    this.songService.loadAllSongs();
   }
-  
-  // Store signals in local variables for easier access
-  loading = computed(() => this.songService.loading());
-  error = computed(() => this.songService.error());
-  allSongs = computed(() => this.songService.songs());
-
-  // Filtering logic
-  searchQuery = signal('');
-
-  filteredSongs = computed(() => {
-    const query = this.searchQuery().toLowerCase();
-    
-    return this.allSongs().filter(song =>
-      song.title.toLowerCase().includes(query) ||
-      song.artist.toLowerCase().includes(query)
-    );
-  });
 
   onSearch(query: string) {
-    this.searchQuery.set(query);
+    this.songService.searchSongs(query);
+  }
+
+  onShowPopular() {
+    this.songService.getPopularSongs();
   }
 }
