@@ -21,9 +21,6 @@ export class SongService {
   songs = this._songs.asReadonly();
   loading = this._loading.asReadonly();
   error = this._error.asReadonly();
-
-  // Cache to store full list to allow resetting without another API call.
-  private allSongsCache = signal<Song[]>([]);
   
   /**
    * Generic helper method to fetch songs. 
@@ -42,10 +39,6 @@ export class SongService {
       this._songs.set(songs);
       this._loading.set(false);
 
-      // If fetching all songs, update the cache
-      if (url === this.songsDirectory) {
-        this.allSongsCache.set(songs);
-      }
     },
     error: () => {
       this._error.set('Failed to load songs');
@@ -59,13 +52,6 @@ export class SongService {
    */
   loadAllSongs() {
     this.fetchSongs(this.songsDirectory);
-  }
-
-  /**
-   * Resets to the cached full list of songs without making another API call.
-   */
-  resetToAllSongs() {
-    this._songs.set(this.allSongsCache());
   }
   
   /**
