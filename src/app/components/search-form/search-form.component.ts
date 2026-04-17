@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Output, EventEmitter, OnInit, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormControl, Validators } from '@angular/forms';
 import { debounceTime } from 'rxjs';
@@ -17,14 +17,23 @@ export class SearchFormComponent implements OnInit {
   ]);
 
   @Output() search = new EventEmitter<string>();
-
+  
   ngOnInit() {
-  this.searchTerm.valueChanges
+    this.searchTerm.valueChanges
     .pipe(debounceTime(400))
     .subscribe(value => {
       if (this.searchTerm.valid) {
         this.search.emit(value || '');
       }
     });
-}
+  }
+  
+  // Clear button reference for template use
+  clearButton: any;
+  @HostListener('document:keydown.escape')
+  onEscapePressed() {
+    if (this.searchTerm.value) {
+      this.searchTerm.reset();
+    }
+  }
 }

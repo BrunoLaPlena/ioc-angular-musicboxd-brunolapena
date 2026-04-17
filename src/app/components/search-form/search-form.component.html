@@ -1,17 +1,43 @@
-<input
-  type="text"
-  placeholder="Name of song"
-  [formControl]="searchTerm"
-/>
+<div class="search-bar-container">
 
-<div *ngIf="searchTerm.dirty && searchTerm.invalid">
+  <label for="search">Search songs:</label>
 
-  <p *ngIf="searchTerm.errors?.['minlength']">
-    Minimum 2 characters required
-  </p>
+  <div class="search-form">
+    <input
+      id="search"
+      type="text"
+      placeholder="Name of song"
+      [formControl]="searchTerm"
+      autocomplete="off"
+      aria-describedby="search-error"
+      [attr.aria-invalid]="searchTerm.invalid && searchTerm.dirty"
+      (keydown.escape)="clearButton?.click()"
+    />
 
-  <p *ngIf="searchTerm.errors?.['maxlength']">
-    Maximum 50 characters allowed
-  </p>
+    <button
+      #clearButton
+      type="button"
+      class="clear-button"
+      *ngIf="searchTerm.value?.trim()"
+      (click)="searchTerm.reset()"
+    >
+      ✕
+    </button>
+  </div>
+
+  <!-- Errors -->
+  <div 
+    *ngIf="searchTerm.dirty && searchTerm.invalid" 
+    id="search-error"
+    aria-live="polite"
+  >
+    <p *ngIf="searchTerm.errors?.['minlength']">
+      Minimum 2 characters required
+    </p>
+
+    <p *ngIf="searchTerm.errors?.['maxlength']">
+      Maximum 50 characters allowed
+    </p>
+  </div>
 
 </div>

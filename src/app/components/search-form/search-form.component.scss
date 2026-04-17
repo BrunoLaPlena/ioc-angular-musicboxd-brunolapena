@@ -1,0 +1,87 @@
+.search-bar-container {
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto 2rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.search-form {
+  position: relative; /* 🔥 important for clear button */
+  display: flex;
+  align-items: stretch;
+
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.search-form input {
+  flex: 1;
+
+  background: var(--card-bg);
+  color: var(--text-color);
+
+  border: 1.5px solid var(--card-bg);
+
+  padding: 0.5rem 0.75rem;
+  padding-right: 2.5rem; /* space for X */
+
+  border-radius: 8px; /* 🔥 full radius now (no button) */
+
+  font-size: 0.95rem;
+}
+
+.clear-button {
+  position: absolute;
+  right: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+
+  width: 1.5rem;
+  height: 1.5rem;
+
+  background: transparent;
+  border: none;
+  cursor: pointer;
+
+  color: var(--text-secondary);
+  opacity: 0.7;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: opacity 0.2s ease;
+}
+
+.clear-button:hover {
+  opacity: 1;
+}
+
+.search-form:focus-within {
+  box-shadow: 0 0 0 1.5px rgba(124, 58, 237, 0.4);
+}
+
+.search-form:has(input.ng-invalid.ng-dirty):focus-within {
+  box-shadow: 0 0 0 1.5px rgba(239, 68, 68, 0.3);
+}
+
+.search-form input.ng-invalid.ng-dirty {
+  border-color: var(--error);
+}
+
+.search-bar-container label {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+#search-error {
+  font-size: 0.9rem;
+  color: var(--error);
+  margin-top: 0.2rem;
+
+  animation: fadeIn 0.6s ease;
+}
