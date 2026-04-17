@@ -24,7 +24,12 @@ export class AppComponent implements OnInit {
   }
 
   onSearch(query: string) {
-    this.songService.searchSongsByTitle(query);
+    // If the search term is invalid, reset to the cached full list without making another API call.
+    if(query === '__CACHED__') {
+      this.songService.resetToAllSongs();
+    } else {
+      this.songService.searchSongsByTitle(query);
+    }
   }
 
   onShowPopular() {

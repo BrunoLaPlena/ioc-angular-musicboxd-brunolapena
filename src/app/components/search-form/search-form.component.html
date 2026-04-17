@@ -3,3 +3,15 @@
   placeholder="Name of song"
   [formControl]="searchTerm"
 />
+
+<div *ngIf="searchTerm.dirty && searchTerm.invalid">
+
+  <p *ngIf="searchTerm.errors?.['minlength']">
+    Minimum 2 characters required
+  </p>
+
+  <p *ngIf="searchTerm.errors?.['maxlength']">
+    Maximum 50 characters allowed
+  </p>
+
+</div>
