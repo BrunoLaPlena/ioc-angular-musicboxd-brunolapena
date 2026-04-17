@@ -4,11 +4,12 @@ import { SongsListComponent } from './components/songs-list/songs-list.component
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { SongService } from './services/song.service';
 import { CommonModule } from '@angular/common';
+import { SearchFormComponent } from './components/search-form/search-form.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [SongsListComponent, SearchBarComponent, CommonModule],
+  imports: [SongsListComponent, SearchFormComponent, CommonModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
@@ -23,7 +24,7 @@ export class AppComponent implements OnInit {
   }
 
   onSearch(query: string) {
-    this.songService.searchSongs(query);
+    this.songService.searchSongsByTitle(query);
   }
 
   onShowPopular() {

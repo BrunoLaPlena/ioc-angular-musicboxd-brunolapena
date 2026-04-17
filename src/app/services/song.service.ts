@@ -55,7 +55,7 @@ export class SongService {
    * Searches for songs from the API based on the provided query and updates the songs signal with the results.
    * @param query The search query to filter songs by title, artist, or album.
    */
-  searchSongs(query: string) {
+  searchSongsByTitle(query: string) {
     this.fetchSongs(`${this.songsDirectory}?name_like=${query}`);
   }
 
