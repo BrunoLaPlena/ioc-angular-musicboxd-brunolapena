@@ -19,19 +19,12 @@ export class SearchFormComponent implements OnInit {
   @Output() search = new EventEmitter<string>();
 
   ngOnInit() {
-    this.searchTerm.valueChanges.pipe(debounceTime(400)).subscribe(value => {
-      
-      if (!value) {
-        // If the search term is empty, load the cached full list without making another API call.
-        this.search.emit('__CACHED__');
-      } else if (this.searchTerm.valid) {
-        // If the search term is valid, emit the search event with the query.
+  this.searchTerm.valueChanges
+    .pipe(debounceTime(400))
+    .subscribe(value => {
+      if (this.searchTerm.valid) {
         this.search.emit(value || '');
-      } else {
-        // If the search term is invalid, fall back to the chached full list without making another API call.
-        this.search.emit('__CACHED__');
       }
-
     });
-  }
+}
 }
