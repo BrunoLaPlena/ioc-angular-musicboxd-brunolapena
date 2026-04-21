@@ -1,12 +1,21 @@
 import { Injectable, signal, computed } from '@angular/core';
 import { Song } from '../models/song.model';
 
+
+/**
+ * Favorite songs are stored as an item containing the song itself and an array of notes.
+ */
+export interface FavoriteItem {
+  song: Song;
+  notes: string[];
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class FavoritesService {
 
-  private _favorites = signal<Song[]>([]);
+  private _favorites = signal<FavoriteItem[]>([]);
   favorites = this._favorites.asReadonly();
   favoriteCount = computed(() => this._favorites().length);
 
@@ -20,13 +29,24 @@ export class FavoritesService {
   loadFavorites(): void {
     try {
       const storedFavorites = localStorage.getItem(this.FAVORITES_KEY);
+
+      if (!storedFavorites) return;
+
+      const parsed = JSON.parse(storedFavorites)
+
+      const normalized: FavoriteItem[] = parsed.map((item: any) => {
+        //if already correct
+        if (item.song) return item;
+
+        //if old format, fallback
+        return {
+          song: item,
+          notes: []
+        };
+      });
       
-      if (storedFavorites) {
-        const parsedFavorites: Song[] = JSON.parse(storedFavorites);
-        this._favorites.set(parsedFavorites);
-      } else {
-        this._favorites.set([]);
-      }
+      this._favorites.set(normalized)
+      
     } catch (error) {
       console.error('Error loading favorites from localStorage: ', error);
       this._favorites.set([]);
@@ -49,27 +69,32 @@ export class FavoritesService {
 
   /**
    * Public method to add a song to the favorites list.
-   * It first checks if the song is already in the favorites to prevent duplicates.
-   * If the song is not already a favorite, it adds it to the list and saves the updated list to localStorage.
+   * Creates a new FavoriteItem containing the song and empty array of notes.
    * @param song The Song object to be added to favorites.
    */
   addFavorite(song: Song): void {
     const currentFavorites = this._favorites();
-    if (!currentFavorites.some(fav => fav.id === song.id)) {
-      this._favorites.set([...currentFavorites, song]);
+    
+    if (!currentFavorites.some(fav => fav.song.id === song.id)) {
+      const newFavorite: FavoriteItem = {
+        song,
+        notes: []
+      };
+      
+      this._favorites.set([...currentFavorites,]);
       this.saveFavorites();
     }
   }
 
   /**
    * Public method to remove a song from the favorites list.
-   * It filters out the song with the specified ID from the current favorites list and updates the signal.
+   * Filters out the FavoriteItem containing the song with the specified ID from the current favorites list and updates the signal.
    * After updating the favorites list, it saves the updated list to localStorage.
    * @param songID The ID of the song to be removed from favorites.
    */
   removeFavorite(songID: string): void {
     const currentFavorites = this._favorites();
-    const updatedFavorites = currentFavorites.filter(fav => fav.id !== songID);
+    const updatedFavorites = currentFavorites.filter(fav => fav.song.id !== songID);
     this._favorites.set(updatedFavorites);
     this.saveFavorites();
   }
@@ -81,6 +106,6 @@ export class FavoritesService {
    * @returns A boolean indicating whether the song is a favorite or not.
    */
   isFavorite(songID: string): boolean {
-    return this._favorites().some(fav => fav.id === songID);
+    return this._favorites().some(fav => fav.song.id === songID);
   }   
 }

@@ -1,5 +1,5 @@
 import { Component, computed, inject } from '@angular/core';
-import { FavoritesService } from '../../services/favorites.service';
+import { FavoriteItem, FavoritesService } from '../../services/favorites.service';
 import { SongCardComponent } from '../../components/song-card/song-card.component';
 import { CommonModule } from '@angular/common';
 import { Song } from '../../models/song.model';
@@ -14,7 +14,7 @@ import { Song } from '../../models/song.model';
 export class FavoritesPanelComponent {
   favoritesService = inject(FavoritesService);
 
-  trackById(index: number, song: Song) {
-    return song.id;
+  trackById(index: number, favorite: FavoriteItem) {
+    return favorite.song.id;
   }
 }

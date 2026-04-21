@@ -10,8 +10,8 @@
   <div *ngIf="favoritesService.favoriteCount() > 0" class="favorites-list">
     <div class="favorites-inner">
       <app-song-card
-        *ngFor="let song of favoritesService.favorites(); trackBy: trackById"
-        [song]="song"
+        *ngFor="let favorite of favoritesService.favorites(); trackBy: trackById"
+        [song]="favorite.song"
         [variant]="'compact'"
       ></app-song-card>
     </div>
