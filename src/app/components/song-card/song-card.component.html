@@ -4,18 +4,23 @@
 
   <p *ngIf="variant === 'default'">{{ song.album }}</p>
 
-  <button 
-    *ngIf="variant === 'default'"
-    (click)="toggleFavorite()"
-  >
-    {{ isFavorite ? '💜' : '🤍' }}
+  <button *ngIf="variant === 'default'" (click)="toggleFavorite()">
+    {{ isFavorite ? "💜" : "🤍" }}
   </button>
 
-  <div *ngIf="variant === 'favorites'">
-    <div *ngFor="let control of notesForm.controls; let i = index">
-      <input [formControl]="control" placeholder="Note..." />
+  <div *ngIf="variant === 'favorites'" class="notes-section">
+    <div *ngFor="let control of notesForm.controls; let i = index" class="note-row">
+      <div style="flex: 1;">
+        <input [formControl]="control" placeholder="Note..." />
+        
+        <small *ngIf="control.invalid && control.dirty">
+          Minimum 3 characters
+        </small>
+      </div>
+      
+      <button (click)="removeNote(i)">✕</button>
     </div>
 
-    <button (click)="addNote()">+</button>
+    <button class="add-note-btn" (click)="addNote()">+</button>
   </div>
 </div>

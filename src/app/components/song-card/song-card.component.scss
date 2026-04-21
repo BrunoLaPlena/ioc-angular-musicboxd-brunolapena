@@ -55,3 +55,87 @@ button.active {
   opacity: 1;
   transform: scale(1.15);
 }
+
+/* ===== NOTES CONTAINER ===== */
+.notes-section {
+  margin-top: 0.8rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+/* ===== SINGLE NOTE ROW ===== */
+.note-row {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+/* ===== NOTE INPUT ===== */
+.note-row input {
+  flex: 1;
+
+  background: var(--card-bg);
+  color: var(--text-color);
+
+  border: 1.5px solid var(--border);
+  border-radius: 6px;
+
+  padding: 0.3rem 0.5rem;
+
+  font-size: 0.85rem;
+
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Focus */
+.note-row input:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+/* Invalid state */
+.note-row input.ng-invalid.ng-dirty {
+  border-color: var(--error);
+}
+
+/* ===== VALIDATION TEXT ===== */
+.note-row small {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--error);
+  margin-top: 0.1rem;
+}
+
+/* ===== REMOVE NOTE BUTTON ===== */
+.note-row button {
+  font-size: 0.9rem;
+  opacity: 0.6;
+  color: var(--text-color);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 1.4rem;
+  height: 1.4rem;
+}
+
+.note-row button:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+/* ===== ADD NOTE BUTTON ===== */
+.add-note-btn {
+  font-size: 1.3rem;
+  color: var(--text-color);
+
+  opacity: 0.6;
+}
+
+.add-note-btn:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}

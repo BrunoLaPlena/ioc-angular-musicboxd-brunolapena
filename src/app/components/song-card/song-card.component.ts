@@ -2,7 +2,7 @@ import { Component, inject, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Song } from '../../models/song.model';
 import { FavoriteItem, FavoritesService } from '../../services/favorites.service';
-import { FormArray, FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FormArray, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-song-card',
@@ -23,9 +23,19 @@ export class SongCardComponent implements OnInit {
       this.notesForm.clear();
 
       this.favorite.notes.forEach(note => {
-        this.notesForm.push(new FormControl(note, {nonNullable: true}));
+        this.notesForm.push(new FormControl(note, {
+          nonNullable: true,
+          validators: [Validators.minLength(3)]
+        }));
       });
     }
+
+    this.notesForm.valueChanges.subscribe(values => {
+      if (this.favorite) {
+        const validNotes = values.filter(note => note.trim().length >= 3);
+        this.favoritesService.updateNotes(this.song.id, validNotes);
+      }
+    });
   }
 
   get notes(): string[] {
@@ -33,7 +43,14 @@ export class SongCardComponent implements OnInit {
   }
 
   addNote() {
-    this.notesForm.push(new FormControl('', {nonNullable: true}));
+    this.notesForm.push(new FormControl('', {
+      nonNullable: true,
+      validators: [Validators.minLength(3)]
+    }));
+  }
+
+  removeNote(index: number) {
+    this.notesForm.removeAt(index);
   }
 
   favoritesService = inject(FavoritesService);
@@ -54,5 +71,4 @@ export class SongCardComponent implements OnInit {
   get isFavorite(): boolean {
     return this.favoritesService.isFavorite(this.song.id);
   }
-
 }

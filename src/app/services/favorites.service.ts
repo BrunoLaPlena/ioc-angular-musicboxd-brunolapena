@@ -107,5 +107,18 @@ export class FavoritesService {
    */
   isFavorite(songID: string): boolean {
     return this._favorites().some(fav => fav.song.id === songID);
-  }   
+  }
+  
+  updateNotes(songID: string, notes: string[]) {
+    const currentFavorites = this._favorites();
+
+    const updated = currentFavorites.map(fav =>
+      fav.song.id === songID
+        ? {...fav, notes}
+        : fav
+    );
+
+    this._favorites.set(updated);
+    this.saveFavorites();
+  }
 }
