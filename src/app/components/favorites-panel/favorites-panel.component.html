@@ -13,7 +13,7 @@
         *ngFor="let favorite of favoritesService.favorites(); trackBy: trackById"
         [song]="favorite.song"
         [favorite]="favorite"
-        [variant]="'compact'"
+        [variant]="'favorites'"
       ></app-song-card>
     </div>
   </div>

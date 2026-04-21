@@ -10,4 +10,12 @@
   >
     {{ isFavorite ? '💜' : '🤍' }}
   </button>
+
+  <div *ngIf="variant === 'favorites'">
+    <div *ngFor="let control of notesForm.controls; let i = index">
+      <input [formControl]="control" placeholder="Note..." />
+    </div>
+
+    <button (click)="addNote()">+</button>
+  </div>
 </div>
