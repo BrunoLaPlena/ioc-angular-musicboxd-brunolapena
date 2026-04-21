@@ -85,3 +85,14 @@
 
   animation: fadeIn 0.6s ease;
 }
+
+#search-error p {
+  margin: 0;
+}
+
+.validating {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-top: 0.2rem;
+  font-style: italic;
+}

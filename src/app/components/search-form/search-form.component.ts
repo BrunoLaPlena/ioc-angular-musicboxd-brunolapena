@@ -1,7 +1,8 @@
-import { Component, Output, EventEmitter, OnInit, HostListener } from '@angular/core';
+import { Component, Output, EventEmitter, OnInit, HostListener, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule, FormControl, Validators } from '@angular/forms';
-import { debounceTime } from 'rxjs';
+import { ReactiveFormsModule, FormControl, Validators, AsyncValidatorFn } from '@angular/forms';
+import { debounceTime, delay, filter, map, of, take } from 'rxjs';
+import { SongService } from '../../services/song.service';
 
 @Component({
   selector: 'app-search-form',
@@ -11,23 +12,64 @@ import { debounceTime } from 'rxjs';
   styleUrl: './search-form.component.scss'
 })
 export class SearchFormComponent implements OnInit {
-  searchTerm = new FormControl('', [
-    Validators.minLength(2),
-    Validators.maxLength(50)
-  ]);
+  searchTerm = new FormControl(
+    '', 
+    [
+      Validators.minLength(2),
+      Validators.maxLength(50)
+    ],
+    [this.noResultsValidator()]
+  );
+
+  songService = inject(SongService);
 
   @Output() search = new EventEmitter<string>();
   
   ngOnInit() {
-    this.searchTerm.valueChanges
+  this.searchTerm.valueChanges
     .pipe(debounceTime(400))
     .subscribe(value => {
-      if (this.searchTerm.valid) {
-        this.search.emit(value || '');
+
+      if (!value || value.trim() === '') {
+        this.search.emit('');
+        return;
       }
+
+      // wait for validation to finish
+      this.searchTerm.statusChanges
+        .pipe(
+          filter(status => status !== 'PENDING'),
+          take(1)
+        )
+        .subscribe(status => {
+          if (status === 'VALID') {
+            this.search.emit(value);
+          }
+      });
     });
   }
-  
+
+  /**
+   * Async validator that simulated a an API call to check if there are results for the search term.
+   * Returns { noResults: true } if there are no results.
+   */
+  noResultsValidator(): AsyncValidatorFn {
+    return (control) => {
+      const value = control.value;
+
+      if (!value || value.length < 2) {
+        return of(null);
+      }
+
+      return this.songService.searchSongsCheck(value).pipe(
+        delay(500), // Simulate network delay
+        map(results => {
+          return results.length === 0 ? { noResults: true } : null;
+        })
+      );
+    };
+  }
+
   // Clear button reference for template use
   clearButton: any;
   @HostListener('document:keydown.escape')

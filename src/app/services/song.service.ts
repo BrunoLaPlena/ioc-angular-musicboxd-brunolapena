@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Song, SongApiResponse } from '../models/song.model';
 import { mapMultipleSongsFromApi } from '../mappers/song.mapper';
 import { environment } from '../environments/environment';
+import { map } from 'rxjs/operators';
 
 
 @Injectable({
@@ -68,4 +69,19 @@ export class SongService {
   getPopularSongs() {
     this.fetchSongs(`${this.songsDirectory}?popular=true`);
   }
+
+  /**
+   * Checks if songs exist for a given query.
+   * Used ONLY by async validator (no state updates).
+   * @param query The search query to check for existing songs.
+   */
+  searchSongsCheck(query: string) {
+    return this.http.get<SongApiResponse[]>(
+      `${this.songsDirectory}?name_like=${query}`
+    ).pipe(
+      map(response => mapMultipleSongsFromApi(response))
+    );
+  }
 }
+
+

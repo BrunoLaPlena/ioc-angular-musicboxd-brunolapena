@@ -1,5 +1,4 @@
 <div class="search-bar-container">
-
   <label for="search">Search songs:</label>
 
   <div class="search-form">
@@ -25,9 +24,14 @@
     </button>
   </div>
 
-  <!-- Errors -->
-  <div 
-    *ngIf="searchTerm.dirty && searchTerm.invalid" 
+  <!-- Async validation state -->
+  <p *ngIf="searchTerm.pending" class="validating">
+    Validating...
+  </p>
+
+  <!-- Errors and validating -->
+  <div
+    *ngIf="searchTerm.dirty && searchTerm.invalid && !searchTerm.pending"
     id="search-error"
     aria-live="polite"
   >
@@ -38,6 +42,9 @@
     <p *ngIf="searchTerm.errors?.['maxlength']">
       Maximum 50 characters allowed
     </p>
-  </div>
 
+    <p *ngIf="searchTerm.errors?.['noResults']">
+      No results found
+    </p>
+  </div>
 </div>
