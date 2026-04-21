@@ -109,6 +109,11 @@ export class FavoritesService {
     return this._favorites().some(fav => fav.song.id === songID);
   }
   
+  /**
+   * Public method used to update and persist the notes of a favorite song
+   * @param songID the ID of the song to be updated
+   * @param notes notes to be added
+   */
   updateNotes(songID: string, notes: string[]) {
     const currentFavorites = this._favorites();
 

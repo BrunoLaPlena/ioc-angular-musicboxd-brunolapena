@@ -1,27 +1,101 @@
-# IocAngularMusicboxdBrunolaplena
+# MusicBoxd – Bruno La Plena
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.21.
+## Description
 
-## Development server
+MusicBoxd is a web application that allows users to explore a catalog of songs, search dynamically, and manage a personalized list of favorites.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Users can:
 
-## Code scaffolding
+- Search songs in real time with validation
+- View popular songs
+- Mark songs as favorites
+- Add and manage personal notes for each favorite
+- Persist their data across sessions
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+The application focuses on reactive state management, clean architecture, and user-friendly interactions.
 
-## Build
+---
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Features
 
-## Running unit tests
+- 🔍 **Reactive Search**
+  - Debounced input (400ms)
+  - Synchronous and asynchronous validation
+  - Real-time feedback and error handling
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- ⭐ **Favorites Management**
+  - Add/remove favorites
+  - Persistent storage using `localStorage`
+  - Favorites counter
 
-## Running end-to-end tests
+- 📝 **Notes System**
+  - Dynamic notes per favorite (FormArray)
+  - Validation (minimum 3 characters)
+  - Live synchronization with application state
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+- 🔥 **Popular Songs Filter**
+  - Toggle between full catalog and popular songs
 
-## Further help
+- ⚡ **Reactive State**
+  - Built with Angular Signals
+  - Automatic UI updates based on state changes
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+---
+
+## Technical Stack
+
+- Angular 18 (Standalone Components)
+- TypeScript
+- SCSS
+- Angular Reactive Forms
+- Angular Signals
+- RxJS
+- Node.js / npm
+
+---
+
+## Architecture
+
+The application follows a clear separation of responsibilities:
+
+- **Services** → Data management and API communication
+- **Components** → UI and user interaction
+- **Forms** → Handled at the component level
+- **Signals** → Source of truth for application state
+
+This structure ensures scalability, maintainability, and clean data flow.
+
+---
+
+## Project Structure
+
+```id="oz2c5u"
+src/
+  app/
+    components/
+    services/
+    models/
+docs/
+  services.md
+  models.md
+  forms.md
+```
+
+---
+
+## Status
+
+Core features are fully implemented:
+
+- Search with validation (sync + async)
+- Favorites system with persistence
+- Notes management using FormArray
+- UI feedback and accessibility improvements
+
+The application is stable and ready for evaluation.
+
+---
+
+## Author
+
+Bruno La Plena

@@ -1,17 +1,121 @@
-# SearchForm Component
+# Forms
 
-## Overview
+## SearchFormComponent
 
-The `SearchFormComponent` implements a reactive search form using Angular Reactive Forms. It provides real-time search with validation, debouncing, and accessibility support.
+The search form is implemented using Reactive Forms with a single `FormControl`.
+
+### Main Control
+
+```ts
+searchTerm: FormControl<string>;
+```
 
 ---
 
-## Form Control
+## Synchronous Validation
 
-The form is built using a single `FormControl` which implements both sync and async validation, as well a 400s debounce:
+- `minLength(2)`
+- `maxLength(50)`
 
-- The sync validation prevent the search from being emitted if the query isn't between 2 and 50 characters long.
+These validators ensure that the search query has a valid length before being processed.
 
-- The async validation simulated an API call to see if there are any results available for the inputted query with a 500s delay while showing a "Validatin..." message. After that, it will either let the search load if there are results, or show an error message "No results found" if there aren't.
+---
 
-- The debounce intreduces a waiting window to prevent the search from firing immediately for each character the user types, and instead to fire only when the user is done typing, otherwise a simple 5 character query would fire 5 separate API calls, which would be inefficient and also make the UI look messy.
+## Asynchronous Validator
+
+The `noResultsValidator` simulates an API request to check whether results exist.
+
+### Behavior
+
+- Runs only when the input has at least 2 characters
+- Calls `searchSongsCheck()`
+- Introduces a 500ms delay to simulate network latency
+- Returns `{ noResults: true }` when no results are found
+
+### Validation State
+
+During validation:
+
+- `control.pending === true`
+- A "Validating..." indicator is displayed
+
+---
+
+## Debounce
+
+The form uses:
+
+```ts
+valueChanges.pipe(debounceTime(400));
+```
+
+### Why?
+
+- Prevents excessive API calls
+- Improves performance
+- Enhances user experience
+
+### How it works
+
+The value is only emitted after the user stops typing for 400ms.
+
+---
+
+## Search Flow Control
+
+A search is only triggered when:
+
+- The control is valid (`VALID`)
+- The async validation has completed
+
+This ensures:
+
+- No unnecessary requests
+- No inconsistent UI states
+
+---
+
+## FormArray for Notes
+
+Each favorite song can have multiple notes, managed with:
+
+```ts
+FormArray<FormControl<string>>;
+```
+
+### Characteristics
+
+- Dynamic (notes can be added/removed)
+- Each note is an independent FormControl
+- Uses `nonNullable: true` to prevent null values
+
+---
+
+## Notes Validation
+
+- Minimum length: 3 characters
+- Invalid notes are not persisted
+
+---
+
+## Synchronization with Service
+
+- `FormArray.valueChanges` updates the service
+- The service updates the Signal
+- The Signal updates the UI
+
+Flow:
+
+```ts
+UI → FormArray → FavoritesService → localStorage
+```
+
+---
+
+## Design Philosophy
+
+- Forms belong to the UI layer
+- Data belongs to services
+- Clear separation of responsibilities
+
+This architecture improves scalability and maintainability.
