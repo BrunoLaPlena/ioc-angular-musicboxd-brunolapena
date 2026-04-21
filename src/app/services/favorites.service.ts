@@ -17,7 +17,7 @@ export class FavoritesService {
    * If there are no favorites stored, it initializes with an empty array.
    * Any errors during loading will be caught and logged, and the favorites will be set to an empty array.
    */
-  private loadFavorites(): void {
+  loadFavorites(): void {
     try {
       const storedFavorites = localStorage.getItem(this.FAVORITES_KEY);
       

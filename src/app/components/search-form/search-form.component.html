@@ -1,6 +1,7 @@
 <div class="search-bar-container">
   <label for="search">Search songs:</label>
 
+  <!-- SEARCH FORM -->
   <div class="search-form">
     <input
       id="search"
@@ -24,10 +25,13 @@
     </button>
   </div>
 
+  <!-- POPULAR BUTTON-->
+  <button type="button" class="popular-button" (click)="onPopularClick()">
+    Popular Songs
+  </button>
+
   <!-- Async validation state -->
-  <p *ngIf="searchTerm.pending" class="validating">
-    Validating...
-  </p>
+  <p *ngIf="searchTerm.pending" class="validating">Validating...</p>
 
   <!-- Errors and validating -->
   <div
@@ -43,8 +47,6 @@
       Maximum 50 characters allowed
     </p>
 
-    <p *ngIf="searchTerm.errors?.['noResults']">
-      No results found
-    </p>
+    <p *ngIf="searchTerm.errors?.['noResults']">No results found</p>
   </div>
 </div>

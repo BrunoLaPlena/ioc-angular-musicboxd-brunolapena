@@ -5,6 +5,7 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
 import { SongService } from './services/song.service';
 import { CommonModule } from '@angular/common';
 import { SearchFormComponent } from './components/search-form/search-form.component';
+import { FavoritesService } from './services/favorites.service';
 
 @Component({
   selector: 'app-root',
@@ -17,10 +18,12 @@ import { SearchFormComponent } from './components/search-form/search-form.compon
 export class AppComponent implements OnInit {
   title = 'ioc-angular-musicboxd-brunolaplena';
   songService = inject(SongService);
+  favoritesService = inject(FavoritesService);
 
   //Load songs from service
   ngOnInit() {
     this.songService.loadAllSongs();
+    this.favoritesService.loadFavorites();
   }
 
   onSearch(query: string) {

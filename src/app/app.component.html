@@ -1,8 +1,11 @@
 <div class="app-container">
   <h1>MusicBoxd 🎵</h1>
 
-  <!-- Search Bar-->
-  <app-search-form (search)="onSearch($event)"></app-search-form>
+  <!-- Search Form-->
+  <app-search-form 
+    (search)="onSearch($event)"
+    (showPopular)="onShowPopular()"
+  ></app-search-form>
 
   <!-- LOADING -->
   <div *ngIf="songService.loading()" class="loading-container">
