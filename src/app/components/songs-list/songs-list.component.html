@@ -3,6 +3,7 @@
   <app-song-card
     *ngFor="let song of songs; trackBy: trackById"
     [song]="song"
+    [variant]="'default'"
   >
   </app-song-card>
 </div>

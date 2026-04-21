@@ -81,7 +81,7 @@ export class FavoritesService {
         notes: []
       };
       
-      this._favorites.set([...currentFavorites,]);
+      this._favorites.set([...currentFavorites, newFavorite]);
       this.saveFavorites();
     }
   }

@@ -1,7 +1,7 @@
 import { Component, inject, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Song } from '../../models/song.model';
-import { FavoritesService } from '../../services/favorites.service';
+import { FavoriteItem, FavoritesService } from '../../services/favorites.service';
 
 @Component({
   selector: 'app-song-card',
@@ -12,6 +12,7 @@ import { FavoritesService } from '../../services/favorites.service';
 })
 export class SongCardComponent {
   @Input() song!: Song;
+  @Input() favorite?: FavoriteItem;
   @Input() variant: 'default' | 'compact' = 'default'; 
 
   favoritesService = inject(FavoritesService);
@@ -31,5 +32,9 @@ export class SongCardComponent {
 
   get isFavorite(): boolean {
     return this.favoritesService.isFavorite(this.song.id);
+  }
+
+  get notes(): string[] {
+    return this.favorite?.notes ?? [];
   }
 }
