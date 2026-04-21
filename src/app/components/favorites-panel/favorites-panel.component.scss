@@ -1,0 +1,77 @@
+/* ===== FAVORITES PANEL ===== */
+.favorites-panel {
+  margin-top: 2rem;
+  padding: 1rem 1rem 0.5rem;
+
+  border-radius: 8px;
+  background: var(--card-bg);
+
+  display: flex;
+  flex-direction: column;
+
+  max-height: 220px;
+}
+
+.favorites-panel h2 {
+  margin: 0 0 0.5rem; /* reduce bottom space */
+  font-size: 1.1rem;  /* slightly smaller */
+  line-height: 1.2;
+}
+
+
+/* ===== SCROLL CONTAINER ===== */
+.favorites-list {
+  flex: 1;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+}
+
+
+/* ===== INNER WRAPPER (KEY FIX) ===== */
+.favorites-inner {
+  display: flex;
+  gap: 1rem;
+
+  align-items: stretch;
+
+  padding-top: 4px;
+  padding-bottom: 18px; /* pushes cards above scrollbar */
+}
+
+
+/* ===== CARD WRAPPER ===== */
+.favorites-inner app-song-card {
+  flex: 0 0 auto;
+  min-width: 160px;
+
+  scroll-snap-align: start;
+}
+
+
+/* ===== CARD HEIGHT ===== */
+.favorites-inner app-song-card .song-card {
+  height: 100%;
+}
+
+
+/* ===== SCROLLBAR STYLING ===== */
+.favorites-list::-webkit-scrollbar {
+  height: 8px; /* slimmer = cleaner */
+}
+
+.favorites-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.favorites-list::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 999px;
+}
+
+.favorites-list::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}

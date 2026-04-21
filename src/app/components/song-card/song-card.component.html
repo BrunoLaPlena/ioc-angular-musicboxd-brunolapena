@@ -1,10 +1,12 @@
 <div class="song-card">
   <h3>{{ song.title }}</h3>
   <h4>{{ song.artist }}</h4>
-  <p>{{ song.album }}</p>
+
+  <p *ngIf="variant === 'default'">{{ song.album }}</p>
+
   <button 
+    *ngIf="variant === 'default'"
     (click)="toggleFavorite()"
-    [class.active]="isFavorite"
   >
     {{ isFavorite ? '💜' : '🤍' }}
   </button>

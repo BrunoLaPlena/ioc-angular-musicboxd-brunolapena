@@ -1,3 +1,8 @@
+.song-card h3,
+.song-card h4 {
+  white-space: nowrap;
+}
+
 .song-card {
   background: var(--card-bg);
   border: 2px solid var(--border);

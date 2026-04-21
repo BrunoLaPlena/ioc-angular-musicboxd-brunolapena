@@ -7,6 +7,8 @@
     (showPopular)="onShowPopular()"
   ></app-search-form>
 
+  <app-favorites-panel></app-favorites-panel>
+
   <!-- LOADING -->
   <div *ngIf="songService.loading()" class="loading-container">
     <div class="spinner"></div>

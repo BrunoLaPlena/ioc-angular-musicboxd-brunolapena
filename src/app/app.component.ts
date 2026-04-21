@@ -6,11 +6,12 @@ import { SongService } from './services/song.service';
 import { CommonModule } from '@angular/common';
 import { SearchFormComponent } from './components/search-form/search-form.component';
 import { FavoritesService } from './services/favorites.service';
+import { FavoritesPanelComponent } from './components/favorites-panel/favorites-panel.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [SongsListComponent, SearchFormComponent, CommonModule],
+  imports: [SongsListComponent, SearchFormComponent, CommonModule, FavoritesPanelComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })

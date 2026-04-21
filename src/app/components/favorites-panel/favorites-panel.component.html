@@ -1,1 +1,19 @@
-<p>favorites-panel works!</p>
+<div class="favorites-panel">
+  <h2>Favorites ({{ favoritesService.favoriteCount() }})</h2>
+
+  <!-- Empty state -->
+  <div *ngIf="favoritesService.favoriteCount() === 0">
+    <p>No favorites yet</p>
+  </div>
+
+  <!-- Favorites list -->
+  <div *ngIf="favoritesService.favoriteCount() > 0" class="favorites-list">
+    <div class="favorites-inner">
+      <app-song-card
+        *ngFor="let song of favoritesService.favorites(); trackBy: trackById"
+        [song]="song"
+        [variant]="'compact'"
+      ></app-song-card>
+    </div>
+  </div>
+</div>
