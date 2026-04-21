@@ -25,11 +25,6 @@
     </button>
   </div>
 
-  <!-- POPULAR BUTTON-->
-  <button type="button" class="popular-button" (click)="onPopularClick()">
-    Popular Songs
-  </button>
-
   <!-- Async validation state -->
   <p *ngIf="searchTerm.pending" class="validating">Validating...</p>
 
@@ -49,4 +44,9 @@
 
     <p *ngIf="searchTerm.errors?.['noResults']">No results found</p>
   </div>
+
+  <!-- POPULAR BUTTON-->
+  <button type="button" class="popular-button" (click)="onPopularClick()">
+    {{ isPopularActive ? "All Songs" : "Popular Songs" }}
+  </button>
 </div>
